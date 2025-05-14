@@ -1,0 +1,17 @@
+- id: yapf
+  name: YAPF formatter
+  entry: hooks/run_yapf.sh
+  language: script
+  files: \.py$
+
+- id: docformatter
+  name: Docformatter cleanup
+  entry: hooks/run_docformatter.sh
+  language: script
+  files: \.py$
+
+- id: capitalize-docparams
+  name: Capitalize docstring param descriptions
+  entry: hooks/capitalize_params.py
+  language: script
+  files: \.py$
