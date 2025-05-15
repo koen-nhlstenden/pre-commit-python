@@ -10,8 +10,8 @@
   language: script
   files: \.py$
 
-- id: capitalize-docparams
-  name: Capitalize docstring param descriptions
-  entry: hooks/capitalize_params.py
+- id: fix-docs
+  name: Capitalize docstring param descriptions, newline between last :param and :return, no newlines after :return
+  entry: hooks/fix_docs.py
   language: script
   files: \.py$
