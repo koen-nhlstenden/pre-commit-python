@@ -41,7 +41,6 @@ def process_file(file_path: str, use_capitalization: bool, string_to_check: str 
                 i > 1
                 and stripped_line.startswith(":return")
                 and content[i - 1].lstrip().startswith(":param")
-                and content[i - 2].strip() != ""
             ):
                 content.insert(i, "\n")
                 i += 1  # Advance to skip the inserted blank line
@@ -92,6 +91,9 @@ def main():
             continue
         process_file(file_path=filepath, use_capitalization=True, string_to_check=":param ")
         process_file(file_path=filepath, use_capitalization=True, string_to_check=":return")
+
+    # Do NOT return non-zero exit code
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()

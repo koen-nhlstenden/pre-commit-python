@@ -10,8 +10,9 @@
   language: script
   files: \.py$
 
-- id: fix-docs
+- id: fix_docs
   name: Capitalize docstring param descriptions, newline between last :param and :return, no newlines after :return
-  entry: hooks/fix_docs.py
-  language: script
+  entry: fix-docs
+  language: python
   files: \.py$
+  pass_filenames: true
