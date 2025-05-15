@@ -23,9 +23,28 @@ def process_file(file_path: str, use_capitalization: bool, string_to_check: str 
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.readlines()
 
+            i = 1
+            while i < len(content):
+                line = content[i].strip()
+                prev_line = content[i - 1].strip()
+                if line == '"""' and prev_line == "":
+                    # Remove the blank line before the closing triple quotes
+                    del content[i - 1]
+                    i -= 1  # Move index back since we removed a line
+                i += 1
+
         for i, line in enumerate(content):
             stripped_line = line.lstrip()  # Remove leading whitespace for processing
             leading_whitespace = line[:len(line) - len(stripped_line)]  # Capture leading whitespace
+
+            if (
+                i > 1
+                and stripped_line.startswith(":return")
+                and content[i - 1].lstrip().startswith(":param")
+                and content[i - 2].strip() != ""
+            ):
+                content.insert(i, "\n")
+                i += 1  # Advance to skip the inserted blank line
 
             if stripped_line.startswith(string_to_check):
                 # Ensure the line contains a colon after the parameter name
