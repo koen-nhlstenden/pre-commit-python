@@ -1,0 +1,2 @@
+[console_scripts]
+fix_docs = hooks.fix_docs:main

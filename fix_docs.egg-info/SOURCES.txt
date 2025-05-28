@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+fix_docs.egg-info/PKG-INFO
+fix_docs.egg-info/SOURCES.txt
+fix_docs.egg-info/dependency_links.txt
+fix_docs.egg-info/entry_points.txt
+fix_docs.egg-info/top_level.txt
+hooks/__init__.py
+hooks/fix_docs.py

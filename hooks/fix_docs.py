@@ -7,10 +7,11 @@ logging.basicConfig(level=logging.INFO)
 
 USE_CAPITALIZATION = False
 
-blacklist = ["tensor", "albumentations", "boundingbox", "numpy", "iou", "cvat", "abcdatasetInfo", "pytorch", "datasetinfo",
-             "dataloader", ",matplotlib", "samplecontainer", "tba", "annotationdict", "id", "cuda", "few-shot", "false", "true",
-             "callable", "pillow", "genericdataset", "patchcore", "markdown", "dataframe", "mnist"]
+blacklist = [
+    "tensor", "albumentations", "boundingbox", "numpy", "iou", "cvat", "abcdatasetInfo", "pytorch", "datasetinfo", "dataloader", ",matplotlib", "samplecontainer", "tba", "annotationdict", "id", "cuda", "few-shot", "false", "true", "callable", "pillow", "genericdataset", "patchcore", "markdown", "dataframe", "mnist"
+]
 blacklist_folders = ["build"]
+
 
 def process_file(file_path: str, use_capitalization: bool, string_to_check: str = ":param ") -> None:
     """
@@ -37,11 +38,7 @@ def process_file(file_path: str, use_capitalization: bool, string_to_check: str 
             stripped_line = line.lstrip()  # Remove leading whitespace for processing
             leading_whitespace = line[:len(line) - len(stripped_line)]  # Capture leading whitespace
 
-            if (
-                i > 1
-                and stripped_line.startswith(":return")
-                and content[i - 1].lstrip().startswith(":param")
-            ):
+            if (i > 1 and stripped_line.startswith(":return") and content[i - 1].lstrip().startswith(":param")):
                 content.insert(i, "\n")
                 i += 1  # Advance to skip the inserted blank line
 
@@ -60,13 +57,10 @@ def process_file(file_path: str, use_capitalization: bool, string_to_check: str 
                 # Capitalize or lowercase the first word in the description
                 if description:
                     first_word = description.split()[0]
-                    if any([first_word.lower().startswith(word.lower()) for word in blacklist]): # Don´t update these strings
+                    if any([first_word.lower().startswith(word.lower()) for word in blacklist]):  # Don´t update these strings
                         continue
                     else:
-                        updated_first_word = (
-                            first_word[0].upper() + first_word[1:] if use_capitalization
-                            else first_word[0].lower() + first_word[1:]
-                        )
+                        updated_first_word = (first_word[0].upper() + first_word[1:] if use_capitalization else first_word[0].lower() + first_word[1:])
                         updated_description = updated_first_word + description[len(first_word):]
                 else:
                     updated_description = description  # Leave it unchanged if empty
@@ -82,6 +76,7 @@ def process_file(file_path: str, use_capitalization: bool, string_to_check: str 
     except Exception as e:
         logger.exception(f"Error processing file {file_path}: {e}")
 
+
 def main():
     """
     Main function to process files passed via command-line arguments.
@@ -94,6 +89,7 @@ def main():
 
     # Do NOT return non-zero exit code
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

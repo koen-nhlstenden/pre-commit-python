@@ -1,0 +1,21 @@
+repos:
+  - repo: local
+    hooks:
+      - id: fix_docs
+        name: Fix Python docstrings
+        entry: hooks/fix_docs.py
+        language: python
+        pass_filenames: true
+        files: \.py$
+
+      - id: yapf
+        name: YAPF Formatter
+        entry: hooks/run_yapf.sh
+        language: script
+        files: \.py$
+
+      - id: docformatter
+        name: Docformatter Cleanup
+        entry: hooks/run_docformatter.sh
+        language: script
+        files: \.py$
