@@ -12,7 +12,7 @@
 
 - id: fix_docs
   name: Capitalize docstring param descriptions, newline between last :param and :return, no newlines after :return
-  entry: hooks/fix_docs
+  entry: hooks/fix_docs.py
   language: python
   files: \.py$
   pass_filenames: true

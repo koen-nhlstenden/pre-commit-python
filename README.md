@@ -9,7 +9,7 @@ repos:
     hooks:
       - id: yapf
       - id: docformatter
-      - id: fix-docs
+      - id: fix_docs
 ```
 
 To use these pre-commits, make sure `docformatter` and `yapf` is installed.
